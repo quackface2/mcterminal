@@ -7,7 +7,7 @@ var server = mc.createServer({
   encryption: false,      // optional
   host: '0.0.0.0',       // optional
   port: 25565,           // optional
-  version: '1.16'
+  version: '1.16.2'
 })
 
 const user = mineflayer.createBot({
