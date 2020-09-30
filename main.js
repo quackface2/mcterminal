@@ -1,22 +1,31 @@
 const mineflayer = require('mineflayer');
 const mineflayerViewer = require('prismarine-viewer').mineflayer;
-const prompt = require('prompt-sync')({sigint: true});
+const prompt = require('prompt-sync')();
 
-const user = prompt('Email: ');
-const pass = prompt('Pass: ');
-const server = prompt('Server: ');
+//const user = prompt('\033[0;36mEmail: ');
+//const pass = prompt('\033[0;36mPass: ');
+//const host = prompt('\033[0;36mServer: ');
 
 const bot = mineflayer.createBot({
-  username: `${user}`,
-  password: `${pass}`,
-  server: `${server}`,
+  username: `cheeto`,
+  //password: `${pass}`,
+  host: `localhost`,
   version: false
 })
 
-console.log("user joined");
+console.log("\033[0;34muser joined");
 
 bot.once('spawn', () => {
-  mineflayerViewer(bot, { port: 8080, firstPerson: true })
+  mineflayerViewer(bot, { port: 8080 }) // Start the viewing server on port 3000
+
+  // Draw the path followed by the bot
+  const path = [bot.entity.position.clone()]
+  bot.on('move', () => {
+    if (path[path.length - 1].distanceTo(bot.entity.position) > 1) {
+      path.push(bot.entity.position.clone())
+      bot.viewer.drawLine('path', path)
+    }
+  })
 })
 
-console.log("web interface started");
+console.log("\033[0;34mweb interface loading");
