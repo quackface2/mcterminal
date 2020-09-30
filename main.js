@@ -1,11 +1,18 @@
-const mineflayer = require('mineflayer')
+const mineflayer = require('mineflayer');
+const mineflayerViewer = require('prismarine-viewer').mineflayer;
+var mc = require('minecraft-protocol');
 
+var server = mc.createServer({
+  'online-mode': false,   // optional
+  encryption: true,      // optional
+  host: '0.0.0.0',       // optional
+  port: 25565,           // optional
+  version: '1.16'
+})
 
 const user = mineflayer.createBot({
-  host: 'localhost', // optional
-  port: 25565,       // optional
-  username: 'User', // email and password are required only for
-  version: false                 // false corresponds to auto version detection (that's the default), put for example "1.8.8" if you need a specific version
+  username: 'User',
+  version: false
 })
 
 user.once('spawn', () => {
