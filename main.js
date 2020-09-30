@@ -1,6 +1,5 @@
 const mineflayer = require('mineflayer');
 const mineflayerViewer = require('prismarine-viewer').mineflayer;
-const prompt = require('prompt-sync')();
 const prompt = require('prompt-sync')({sigint: true});
 
 const user = prompt('Email: ');
