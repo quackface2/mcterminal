@@ -17,15 +17,6 @@ console.log("\033[0;34muser joined");
 
 bot.once('spawn', () => {
   mineflayerViewer(bot, { port: 8080 }) // Start the viewing server on port 3000
-
-  // Draw the path followed by the bot
-  const path = [bot.entity.position.clone()]
-  bot.on('move', () => {
-    if (path[path.length - 1].distanceTo(bot.entity.position) > 1) {
-      path.push(bot.entity.position.clone())
-      bot.viewer.drawLine('path', path)
-    }
-  })
 })
 
 console.log("\033[0;34mweb interface loading");
